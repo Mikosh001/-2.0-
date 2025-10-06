@@ -1,0 +1,58 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background: rgba(255, 255, 255, 0.85);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+}
+
+.navbar-logo {
+  font-weight: 800;
+  font-size: 1.3rem;
+  color: #007bff;
+}
+
+.navbar nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.navbar nav a {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #24324b;
+  font-weight: 600;
+}
+
+.navbar nav a small {
+  color: rgba(36, 50, 75, 0.6);
+  font-size: 0.7rem;
+}
+
+.navbar nav a.active span {
+  color: #4caf50;
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navbar-user {
+  font-weight: 600;
+  color: #0b1d3a;
+}
+
+.navbar-login {
+  padding: 0.5rem 1rem;
+  border: 2px solid #007bff;
+  border-radius: 999px;
+  color: #007bff;
+  font-weight: 600;
+}

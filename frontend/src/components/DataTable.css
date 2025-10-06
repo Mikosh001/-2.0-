@@ -1,0 +1,26 @@
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.data-table th,
+.data-table td {
+  padding: 0.85rem 1rem;
+  text-align: left;
+}
+
+.data-table thead {
+  background: #007bff;
+  color: white;
+}
+
+.data-table tbody tr:nth-child(even) {
+  background: rgba(0, 123, 255, 0.05);
+}
+
+.data-table tbody tr:hover {
+  background: rgba(76, 175, 80, 0.1);
+}
