@@ -1,0 +1,650 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "\u041f\u0440\u043e\u0444\u0435\u0441\u0441\u0438\u044f 2.0 API",
+    "version": "1.0.0",
+    "description": "REST API for agri-tech upskilling platform"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:4000/api"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "paths": {
+    "/auth/register": {
+      "post": {
+        "summary": "Register user",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "summary": "Login user",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Token"
+          }
+        }
+      }
+    },
+    "/courses": {
+      "get": {
+        "summary": "List courses",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "skill",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Courses"
+          }
+        }
+      }
+    },
+    "/courses/{id}": {
+      "get": {
+        "summary": "Get course",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Course"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/courses/{id}/lessons": {
+      "get": {
+        "summary": "Get lessons",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lessons"
+          }
+        }
+      }
+    },
+    "/quiz/{courseId}/start": {
+      "post": {
+        "summary": "Start adaptive quiz",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "courseId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Session started"
+          }
+        }
+      }
+    },
+    "/quiz/{courseId}/answer": {
+      "post": {
+        "summary": "Answer quiz question",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "courseId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Next question"
+          }
+        }
+      }
+    },
+    "/quiz/{courseId}/finish": {
+      "post": {
+        "summary": "Finish quiz",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "courseId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Quiz summary"
+          }
+        }
+      }
+    },
+    "/badges/me": {
+      "get": {
+        "summary": "List my badges",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Badges"
+          }
+        }
+      }
+    },
+    "/badges/{id}/qrcode": {
+      "get": {
+        "summary": "Generate badge QR",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "QR code"
+          }
+        }
+      }
+    },
+    "/jobs": {
+      "get": {
+        "summary": "List jobs",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "city",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "skills",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "matchFor",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Jobs"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create job",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/jobs/{id}/apply": {
+      "post": {
+        "summary": "Apply to job",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Application submitted"
+          }
+        }
+      }
+    },
+    "/jobs/me/applications": {
+      "get": {
+        "summary": "List my applications",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Applications"
+          }
+        }
+      }
+    },
+    "/mentors": {
+      "get": {
+        "summary": "List mentors",
+        "responses": {
+          "200": {
+            "description": "Mentors"
+          }
+        }
+      }
+    },
+    "/admin/courses": {
+      "get": {
+        "summary": "Admin courses",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Courses"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create course",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/admin/courses/{id}": {
+      "put": {
+        "summary": "Update course",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete course",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Deleted"
+          }
+        }
+      }
+    },
+    "/admin/courses/{courseId}/lessons": {
+      "post": {
+        "summary": "Create lesson",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "courseId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/admin/lessons/{lessonId}": {
+      "put": {
+        "summary": "Update lesson",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "lessonId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete lesson",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "lessonId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Deleted"
+          }
+        }
+      }
+    },
+    "/admin/courses/{courseId}/questions": {
+      "post": {
+        "summary": "Create question",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "courseId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/admin/questions/{questionId}": {
+      "put": {
+        "summary": "Update question",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "questionId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete question",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "questionId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Deleted"
+          }
+        }
+      }
+    },
+    "/admin/jobs": {
+      "get": {
+        "summary": "List jobs as admin",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Jobs"
+          }
+        }
+      }
+    },
+    "/users/me": {
+      "get": {
+        "summary": "Get current user profile",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Profile"
+          }
+        }
+      }
+    },
+    "/users/me/enrollments": {
+      "get": {
+        "summary": "Get my enrollments",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Enrollments"
+          }
+        }
+      }
+    },
+    "/users/{id}/public": {
+      "get": {
+        "summary": "Public profile by id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Public profile"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    }
+  }
+}

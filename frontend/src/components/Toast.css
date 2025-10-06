@@ -1,0 +1,19 @@
+.toast {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.2);
+  z-index: 2000;
+}
+
+.toast-success {
+  background: linear-gradient(90deg, #4caf50, #2dd4bf);
+}
+
+.toast-error {
+  background: linear-gradient(90deg, #ef4444, #f97316);
+}
