@@ -1,0 +1,32 @@
+.card {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 16px 40px rgba(0, 123, 255, 0.08);
+  border: 1px solid rgba(0, 123, 255, 0.12);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.card-header h3 {
+  margin: 0;
+  color: #0b1d3a;
+}
+
+.card-subtitle {
+  color: #4caf50;
+  margin: 0.25rem 0 0;
+}
+
+.card-body {
+  color: #24324b;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}

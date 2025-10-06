@@ -1,0 +1,19 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+  background: #0b1d3a;
+  color: white;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer strong {
+  color: #ffc107;
+}
+
+.footer p,
+.footer small {
+  margin: 0.35rem 0 0;
+  color: rgba(255, 255, 255, 0.8);
+}
